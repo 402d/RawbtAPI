@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Demo for RawBT API</string>
+    <string name="btnTxtPrint">Print</string>
+    <string name="btnTest">Test</string>
+   <string name="printer">Printer</string>
+    <string name="template">Template</string>
+    <string name="copies">Copies</string>
+    <string name="sdk_intro">The RawBT program is over three years old. Operating system requirements are changing. Technical debt has accumulated as new features are added. It\'s time for a big refactoring of the code. This is an intermediate version. Its main purpose is to check compatibility with the previous integration methods. \n\n The program is now converting the previous methods of interaction into a new format, and in the future, some of them will receive the status of undesirable. The exact dates are not yet known. I promise at least one year of support for old calls after the official transition to the new api.\n\n Below is a demonstration of the possibilities for clarifying the requirements for the new api from your side and testing.</string>
+    <string name="sdk_main">The concept of a print job is introduced.</string>
+    <string name="sdk_printjob">For the further development of the program, I lay down the choice of a printer and a print template.</string>
+    <string name="sdk_commands">A print job consists of a list of print commands. Such as text printing, picture printing, etc. The corresponding attribute classes are used to refine the appearance.</string>
+    <string name="sdk_print">Available control of font style and alignment.</string>
+    <string name="sdk_image">Image attributes: alignment, scale in relation to the width of printers, graphic filter.</string>
+    <string name="sdk_barcode_1">The program generates a picture of a barcode on its own. This allows you not to depend on the technical capabilities of the printer itself.</string>
+    <string name="sdk_barcode_2">Options are available to customize the appearance of the barcode.</string>
+    <string name="sdk_rich_1">To simplify common tasks, I have added a number of functions. Draw a character string to the full width of the printer. In the future, others will be added: Display a table, QRcode, sound a signal, open a box and others. Collecting your needs.</string>
+    <string name="sdk_rich_format">Additional formatting options</string>
+</resources>
