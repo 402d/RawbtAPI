@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.library'
+    id 'maven-publish'
 }
 
 android {
@@ -28,4 +29,35 @@ android {
 dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'androidx.annotation:annotation:1.2.0'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+
+            groupId = 'com.github.402d'
+            artifactId = 'RawbtAPI'
+            version = '1.0'
+
+            pom {
+                name = 'RawbtAPI'
+                description = 'Library for integration with the printing service (RawBT) for thermal printers.'
+                url = 'https://github.com/402d/RawbtAPI'
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://opensource.org/licenses/mit-license.html'
+                    }
+                }
+                developers {
+                    developer {
+                        id = '402d'
+                        name = 'Oleg Muraveyko'
+                        email = 'oleg@muraveyko.ru'
+                    }
+                }
+
+            }
+        }
+    }
 }
