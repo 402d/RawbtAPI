@@ -31,33 +31,43 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.2.0'
 }
 
-publishing {
-    publications {
-        maven(MavenPublication) {
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
 
-            groupId = 'com.github.402d'
-            artifactId = 'RawbtAPI'
-            version = '1.0'
+                groupId = 'com.github.402d'
+                artifactId = 'RawbtAPI'
+                version = '1.0'
 
-            pom {
-                name = 'RawbtAPI'
-                description = 'Library for integration with the printing service (RawBT) for thermal printers.'
-                url = 'https://github.com/402d/RawbtAPI'
-                licenses {
-                    license {
-                        name = 'MIT License'
-                        url = 'https://opensource.org/licenses/mit-license.html'
+                artifact(sourceJar)
+
+                pom {
+                    name = 'RawbtAPI'
+                    description = 'Library for integration with the printing service (RawBT) for thermal printers.'
+                    url = 'https://github.com/402d/RawbtAPI'
+                    licenses {
+                        license {
+                            name = 'MIT License'
+                            url = 'https://opensource.org/licenses/mit-license.html'
+                        }
                     }
-                }
-                developers {
-                    developer {
-                        id = '402d'
-                        name = 'Oleg Muraveyko'
-                        email = 'oleg@muraveyko.ru'
+                    developers {
+                        developer {
+                            id = '402d'
+                            name = 'Oleg Muraveyko'
+                            email = 'oleg@muraveyko.ru'
+                        }
                     }
-                }
 
+                }
             }
         }
     }
+}
+
+task sourceJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier "sources"
 }
