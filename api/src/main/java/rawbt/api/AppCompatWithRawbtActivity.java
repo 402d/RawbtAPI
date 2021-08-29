@@ -23,8 +23,8 @@ import rawbt.sdk.IRawBtPrintService;
 
 abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
 
-    final ExecutorService executor = Executors.newSingleThreadExecutor();
-    final Handler handler = new Handler(Looper.getMainLooper());
+    final protected ExecutorService executor = Executors.newSingleThreadExecutor();
+    final protected Handler handler = new Handler(Looper.getMainLooper());
     // -----------------------------------------
 
     public volatile IRawBtPrintService serviceRawBT = null;
