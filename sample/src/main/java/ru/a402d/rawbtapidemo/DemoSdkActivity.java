@@ -13,13 +13,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.ArrayList;
 
+import rawbt.api.AppCompatWithRawbtActivity;
 import rawbt.api.attributes.AttributesBarcode;
 import rawbt.api.attributes.AttributesString;
 import rawbt.api.attributes.AttributesImage;
@@ -29,32 +30,16 @@ import rawbt.api.RawbtPrintJob;
 import static rawbt.api.Constant.*;
 import rawbt.sdk.IRawBtPrintService;
 
-public class DemoSdkActivity extends AppCompatActivity {
+public class DemoSdkActivity extends AppCompatWithRawbtActivity {
 
     private final RawbtPrintJob attrJob = new RawbtPrintJob();
-
-    // -----------------------------------------
-
-    public IRawBtPrintService serviceRawBT = null;
-    private final ServiceConnection connectService = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder s) {
-            serviceRawBT = IRawBtPrintService.Stub.asInterface(s);
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            serviceRawBT = null;
-        }
-
-    };
 
     // -----------------------------------------
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_demo_sdk);
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -129,6 +114,8 @@ public class DemoSdkActivity extends AppCompatActivity {
             }
         });
 
+        // Examples
+
         findViewById(R.id.sdk_test1).setOnClickListener((v)->demo_job());
         findViewById(R.id.sdk_test_font).setOnClickListener((v)->demo_font());
         findViewById(R.id.sdk_test_image).setOnClickListener((v)->demo_image());
@@ -138,10 +125,18 @@ public class DemoSdkActivity extends AppCompatActivity {
 
         findViewById(R.id.sdk_test_rich_format).setOnClickListener((v)->demo_rich_format());
 
-        if(serviceRawBT==null) {
-            bindService(RawbtApiHelper.createExplicitIntent(), connectService, Context.BIND_AUTO_CREATE);
-        }
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    // ------------------------------
 
     private ArrayList<String> getPrinterList() {
         ArrayList<String> arrayList = new ArrayList<>();
@@ -175,22 +170,8 @@ public class DemoSdkActivity extends AppCompatActivity {
 
         return arrayList;
     }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if(serviceRawBT != null){
-            unbindService(connectService);
-        }
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
+    // ------------------------------
 
     private void demo_job(){
         RawbtPrintJob job = new RawbtPrintJob();
@@ -548,4 +529,35 @@ public class DemoSdkActivity extends AppCompatActivity {
             Toast.makeText(this,e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
         }
     }
+
+
+
+
+    // ---------------------- implements ----------------
+
+    @Override
+    protected void handleServiceConnected() {
+        // auto start print where
+    }
+
+    @Override
+    protected void handlePrintSuccess(String jobId) {
+        Toast.makeText(this,"Success",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void handlePrintCancel(String jobId) {
+        Toast.makeText(this,"Canceled",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void handlePrintError(@Nullable String jobId, String message) {
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void handlePrintProgress(String jobId, Float p) {
+        // nothing
+    }
+
 }

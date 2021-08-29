@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rawbt_connect_error">Erreur de connexion au service d\'impression RawBT</string>
+    <string name="rawbt_permission_not_granted">Autorisation non accordée</string>
+</resources>

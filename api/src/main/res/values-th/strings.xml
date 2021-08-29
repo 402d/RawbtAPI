@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rawbt_connect_error">เกิดข้อผิดพลาดในการเชื่อมต่อกับบริการพิมพ์ RawBT</string>
+    <string name="rawbt_permission_not_granted">ไม่ได้รับอนุญาต</string>
+</resources>

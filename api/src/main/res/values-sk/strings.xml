@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rawbt_connect_error">Chyba pri pripájaní k tlačovej službe RawBT</string>
+    <string name="rawbt_permission_not_granted">Povolenie nebolo udelené</string>
+</resources>

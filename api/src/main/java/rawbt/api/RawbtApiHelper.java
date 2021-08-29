@@ -10,6 +10,7 @@ import static rawbt.api.RawbtPrintJob.ACTION_PRINT_JOB;
 import static rawbt.api.RawbtPrintJob.EXTRA_JOB;
 
 public class RawbtApiHelper {
+    public static final String SERVICE_PERMISSION = "ru.a402d.rawbtprinter.PERMISSION";
     public static final String SERVICE_PACKAGE = "ru.a402d.rawbtprinter";
     public static void startActionPrintJob(Context context, RawbtPrintJob job) {
         try {

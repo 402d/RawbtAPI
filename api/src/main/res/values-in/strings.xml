@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rawbt_connect_error">Kesalahan saat menghubungkan ke layanan cetak RawBT</string>
+    <string name="rawbt_permission_not_granted">Izin tidak diberikan</string>
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rawbt_connect_error">रॉबीटी प्रिंट सेवा से जुड़ने में त्रुटि</string>
+    <string name="rawbt_permission_not_granted">अनुमति नहीं मिली</string>
+</resources>
