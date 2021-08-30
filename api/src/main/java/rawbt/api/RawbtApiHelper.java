@@ -2,6 +2,7 @@ package rawbt.api;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 
 import com.google.gson.Gson;
@@ -36,6 +37,16 @@ public class RawbtApiHelper {
         intent.setPackage("ru.a402d.rawbtprinter");
         intent.setAction("rawbt.action.SERVICE");
         return intent;
+    }
+
+    public boolean isServiceInstalled(Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        try {
+            packageManager.getPackageInfo(RawbtApiHelper.SERVICE_PACKAGE, 0);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
     }
 
 

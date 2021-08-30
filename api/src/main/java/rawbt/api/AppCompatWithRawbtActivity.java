@@ -82,15 +82,17 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
     };
     // --------------------------------------------------------
     private final ActivityResultLauncher<String> mRequestPermission = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-        if(isGranted) {
+
             try {
                 bindService(RawbtApiHelper.createExplicitIntent(), connectService, Context.BIND_AUTO_CREATE);
             }catch (Exception e){
-                handlePrintError(null,getString(R.string.rawbt_connect_error));
+                if(isGranted) {
+                    handlePrintError(null,getString(R.string.rawbt_connect_error));
+                }else{
+                    handlePrintError(null,getString(R.string.rawbt_permission_not_granted));
+                }
             }
-        }else{
-            handlePrintError(null,getString(R.string.rawbt_permission_not_granted));
-        }
+
     });
     // --------------------------------------------------------
 
@@ -100,19 +102,20 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
 
         if(serviceRawBT==null) {
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            try {
+                bindService(RawbtApiHelper.createExplicitIntent(), connectService, Context.BIND_AUTO_CREATE);
+            }catch (SecurityException s){
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
                     if (checkSelfPermission(RawbtApiHelper.SERVICE_PERMISSION)
                             != PackageManager.PERMISSION_GRANTED) {
 
                         mRequestPermission.launch(RawbtApiHelper.SERVICE_PERMISSION);
 
-                        return;
                     }
 
-            }
-            try {
-                bindService(RawbtApiHelper.createExplicitIntent(), connectService, Context.BIND_AUTO_CREATE);
+                }
             }catch (Exception e){
                 handlePrintError(null,getString(R.string.rawbt_connect_error));
             }
