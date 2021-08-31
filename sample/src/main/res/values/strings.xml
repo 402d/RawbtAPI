@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Demo for RawBT API</string>
+    <string name="app_name" translatable="false">Demo for RawBT API</string>
     <string name="btnTxtPrint">Print</string>
     <string name="btnTest">Test</string>
    <string name="printer">Printer</string>

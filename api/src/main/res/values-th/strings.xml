@@ -2,4 +2,6 @@
 <resources>
     <string name="rawbt_connect_error">เกิดข้อผิดพลาดในการเชื่อมต่อกับบริการพิมพ์ RawBT</string>
     <string name="rawbt_permission_not_granted">ไม่ได้รับอนุญาต</string>
+    <string name="rawb_not_installed">ไม่ได้ติดตั้งบริการพิมพ์ RawBT</string>
+    <string name="rawbt_please_wait">รอสักครู่แล้วลองอีกครั้ง</string>
 </resources>

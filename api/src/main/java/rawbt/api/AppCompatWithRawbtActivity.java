@@ -12,18 +12,15 @@ import android.os.Looper;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import rawbt.sdk.ICallback;
 import rawbt.sdk.IRawBtPrintService;
 
 abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
 
-    final protected ExecutorService executor = Executors.newSingleThreadExecutor();
     final protected Handler handler = new Handler(Looper.getMainLooper());
     // -----------------------------------------
 
@@ -37,13 +34,14 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
                 serviceRawBT.registerCallback(serviceCallback);
                 handler.post(()-> handleServiceConnected());
             } catch (Exception e) {
-                e.printStackTrace();
+                handlePrintError(null,e.getLocalizedMessage());
             }
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
             serviceRawBT = null;
+            handler.postDelayed(()-> bindRawBT(false),5000);
         }
 
     };
@@ -80,32 +78,12 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
 
 
     };
-    // --------------------------------------------------------
-    private final ActivityResultLauncher<String> mRequestPermission = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
 
-            try {
-                bindService(RawbtApiHelper.createExplicitIntent(), connectService, Context.BIND_AUTO_CREATE);
-            }catch (Exception e){
-                if(isGranted) {
-                    handlePrintError(null,getString(R.string.rawbt_connect_error));
-                }else{
-                    handlePrintError(null,getString(R.string.rawbt_permission_not_granted));
-                }
-            }
-
-    });
-    // --------------------------------------------------------
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        if(serviceRawBT==null) {
-
-            try {
-                bindService(RawbtApiHelper.createExplicitIntent(), connectService, Context.BIND_AUTO_CREATE);
-            }catch (SecurityException s){
-
+    protected void bindRawBT(boolean allowRequestPerm){
+        try {
+            bindService(RawbtApiHelper.createExplicitIntent(), connectService, Context.BIND_AUTO_CREATE);
+        }catch (SecurityException s){
+            if(allowRequestPerm){
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
                     if (checkSelfPermission(RawbtApiHelper.SERVICE_PERMISSION)
@@ -116,9 +94,23 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
                     }
 
                 }
-            }catch (Exception e){
-                handlePrintError(null,getString(R.string.rawbt_connect_error));
+            }else {
+                handlePrintError(null, getString(R.string.rawbt_permission_not_granted));
             }
+        }catch (Exception e) {
+            handlePrintError(null,getString(R.string.rawbt_connect_error));
+        }
+    }
+    // --------------------------------------------------------
+    private final ActivityResultLauncher<String> mRequestPermission = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> bindRawBT(false));
+    // --------------------------------------------------------
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if(serviceRawBT==null) {
+            bindRawBT(true);
         }
     }
 
@@ -127,6 +119,26 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
         super.onDestroy();
         if(serviceRawBT != null){
             unbindService(connectService);
+        }
+    }
+
+    protected void printJob(@NonNull RawbtPrintJob job){
+        if(serviceRawBT == null){
+            if(!RawbtApiHelper.isServiceInstalled(this)){
+                handlePrintError(job.idJob,getString(R.string.rawb_not_installed));
+                return;
+            }
+            bindRawBT(false);
+            handlePrintError(job.idJob,getString(R.string.rawbt_please_wait));
+            return;
+        }
+
+        try{
+            serviceRawBT.printRawbtPrintJob(job.GSON());
+        }catch (SecurityException s){
+            handlePrintError(job.idJob,getString(R.string.rawbt_permission_not_granted));
+        }catch (Exception e){
+            handlePrintError(job.idJob,e.getLocalizedMessage());
         }
     }
 

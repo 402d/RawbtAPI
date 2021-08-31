@@ -1,11 +1,7 @@
 package ru.a402d.rawbtapidemo;
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,10 +21,9 @@ import rawbt.api.attributes.AttributesBarcode;
 import rawbt.api.attributes.AttributesString;
 import rawbt.api.attributes.AttributesImage;
 import rawbt.api.command.CommandBarcode;
-import rawbt.api.RawbtApiHelper;
 import rawbt.api.RawbtPrintJob;
 import static rawbt.api.Constant.*;
-import rawbt.sdk.IRawBtPrintService;
+
 
 public class DemoSdkActivity extends AppCompatWithRawbtActivity {
 
@@ -182,12 +177,8 @@ public class DemoSdkActivity extends AppCompatWithRawbtActivity {
 
         job.println("Hello,World!");
 
-        try {
-            serviceRawBT.printRawbtPrintJob(job.GSON());
-            Toast.makeText(this, getString(R.string.btnTxtPrint), Toast.LENGTH_SHORT).show();
-        }catch (Exception e){
-            Toast.makeText(this,e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(this, getString(R.string.btnTxtPrint), Toast.LENGTH_SHORT).show();
+        printJob(job);
     }
 
     private void demo_font(){
@@ -289,12 +280,8 @@ public class DemoSdkActivity extends AppCompatWithRawbtActivity {
         job.println("Using different styles on the same line is not supported. See rich format.");
         job.ln();
 
-        try {
-            serviceRawBT.printRawbtPrintJob(job.GSON());
-            Toast.makeText(this, getString(R.string.btnTxtPrint), Toast.LENGTH_SHORT).show();
-        }catch (Exception e){
-            Toast.makeText(this,e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(this, getString(R.string.btnTxtPrint), Toast.LENGTH_SHORT).show();
+        printJob(job);
     }
 
     private void demo_rich_format(){
@@ -340,12 +327,8 @@ public class DemoSdkActivity extends AppCompatWithRawbtActivity {
                 attrStr.build().setDoubleWidth(true),
                 attrStr.build().setDoubleHeight(true));
 
-        try {
-            serviceRawBT.printRawbtPrintJob(job.GSON());
-            Toast.makeText(this, getString(R.string.btnTxtPrint), Toast.LENGTH_SHORT).show();
-        }catch (Exception e){
-            Toast.makeText(this,e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(this, getString(R.string.btnTxtPrint), Toast.LENGTH_SHORT).show();
+        printJob(job);
     }
 
     private void demo_image(){
@@ -393,12 +376,8 @@ public class DemoSdkActivity extends AppCompatWithRawbtActivity {
         job.println("Rotate");
         job.ln(3);
 
-        try {
-            serviceRawBT.printRawbtPrintJob(job.GSON());
-            Toast.makeText(this, getString(R.string.btnTxtPrint), Toast.LENGTH_SHORT).show();
-        }catch (Exception e){
-            Toast.makeText(this,e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(this, getString(R.string.btnTxtPrint), Toast.LENGTH_SHORT).show();
+        printJob(job);
     }
 
     private void demo_barcode(){
@@ -464,12 +443,9 @@ public class DemoSdkActivity extends AppCompatWithRawbtActivity {
         job.add(new CommandBarcode(BARCODE_EAN13,"012345678901").setHeight(96).setWidth(8).setHri(HRI_BOTH));
         job.ln(2);
 
-        try {
-            serviceRawBT.printRawbtPrintJob(job.GSON());
-            Toast.makeText(this, getString(R.string.btnTxtPrint), Toast.LENGTH_SHORT).show();
-        }catch (Exception e){
-            Toast.makeText(this,e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
-        }
+
+        Toast.makeText(this, getString(R.string.btnTxtPrint), Toast.LENGTH_SHORT).show();
+        printJob(job);
     }
 
     private void demo_barcode2() {
@@ -522,12 +498,8 @@ public class DemoSdkActivity extends AppCompatWithRawbtActivity {
         job.ln();
 
 
-        try {
-            serviceRawBT.printRawbtPrintJob(job.GSON());
-            Toast.makeText(this, getString(R.string.btnTxtPrint), Toast.LENGTH_SHORT).show();
-        }catch (Exception e){
-            Toast.makeText(this,e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(this, getString(R.string.btnTxtPrint), Toast.LENGTH_SHORT).show();
+        printJob(job);
     }
 
 

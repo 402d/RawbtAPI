@@ -2,4 +2,6 @@
 <resources>
     <string name="rawbt_connect_error">रॉबीटी प्रिंट सेवा से जुड़ने में त्रुटि</string>
     <string name="rawbt_permission_not_granted">अनुमति नहीं मिली</string>
+    <string name="rawb_not_installed">रॉबीटी प्रिंट सेवा स्थापित नहीं है</string>
+    <string name="rawbt_please_wait">कुछ सेकंड प्रतीक्षा करें और पुनः प्रयास करें।</string>
 </resources>

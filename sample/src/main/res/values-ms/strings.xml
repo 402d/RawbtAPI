@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <string name="btnTxtPrint">Cetak</string>
+    <string name="btnTest">Uji</string>
+    <string name="printer">Pencetak</string>
+    <string name="template">Templat</string>
+    <string name="copies">Salinan</string>
+    <string name="sdk_intro">Program RawBT berumur lebih dari tiga tahun. Keperluan sistem operasi berubah. Hutang teknikal telah terkumpul ketika ciri baru ditambahkan. Sudah tiba masanya untuk pemfaktoran semula kod yang besar. Ini adalah versi perantaraan. Tujuan utamanya adalah untuk memeriksa keserasian dengan kaedah penyatuan sebelumnya.    Program ini kini mengubah kaedah interaksi sebelumnya menjadi format baru, dan pada masa akan datang, sebahagian dari mereka akan menerima status yang tidak diingini. Tarikh yang tepat belum diketahui. Saya berjanji sekurang-kurangnya satu tahun sokongan untuk panggilan lama setelah peralihan rasmi ke api baru.    Di bawah ini adalah demonstrasi kemungkinan untuk menjelaskan syarat-syarat untuk api baru dari pihak anda dan ujian.</string>
+    <string name="sdk_main">Konsep pekerjaan cetak diperkenalkan.</string>
+    <string name="sdk_printjob">Untuk pengembangan program selanjutnya, saya meletakkan pilihan pencetak dan templat cetak.</string>
+    <string name="sdk_commands">Tugas cetak terdiri daripada senarai arahan cetak. Seperti percetakan teks, pencetakan gambar, dan lain-lain. Kelas atribut yang sesuai digunakan untuk memperbaiki penampilan.</string>
+    <string name="sdk_print">Kawalan gaya font dan penjajaran yang tersedia.</string>
+    <string name="sdk_image">Atribut gambar: penjajaran, skala berkaitan dengan lebar pencetak, penapis grafik.</string>
+    <string name="sdk_barcode_1">Program ini menghasilkan gambar kod bar sendiri. Ini membolehkan anda tidak bergantung pada kemampuan teknikal pencetak itu sendiri.</string>
+    <string name="sdk_barcode_2">Pilihan tersedia untuk menyesuaikan penampilan kod bar.</string>
+    <string name="sdk_rich_1">Untuk mempermudah tugas biasa, saya telah menambahkan sejumlah fungsi. Lukiskan rentetan watak ke lebar penuh pencetak. Pada masa akan datang, yang lain akan ditambahkan: Paparkan jadual, QRcode, bunyikan isyarat, buka kotak dan lain-lain. Mengumpulkan keperluan anda.</string>
+    <string name="sdk_rich_format">Pilihan pemformatan tambahan</string>
+</resources>

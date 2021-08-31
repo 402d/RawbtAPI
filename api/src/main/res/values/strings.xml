@@ -2,4 +2,6 @@
 <resources>
     <string name="rawbt_connect_error">Error connecting to RawBT print service</string>
     <string name="rawbt_permission_not_granted">Permission not granted</string>
+    <string name="rawb_not_installed">RawBT Print Service Not Installed</string>
+    <string name="rawbt_please_wait">Wait a few seconds and try again.</string>
 </resources>

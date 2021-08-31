@@ -2,4 +2,6 @@
 <resources>
     <string name="rawbt_connect_error">Ralat semasa menyambung ke perkhidmatan cetak RawBT</string>
     <string name="rawbt_permission_not_granted">Kebenaran tidak diberikan</string>
+    <string name="rawb_not_installed">Perkhidmatan Cetakan RawBT Tidak Dipasang</string>
+    <string name="rawbt_please_wait">Tunggu beberapa saat dan cuba lagi.</string>
 </resources>

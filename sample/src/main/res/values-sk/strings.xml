@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="btnTxtPrint">vytlačiť</string>
+    <string name="printer">Tlačiareň</string>
+    <string name="template">Vzor</string>
+    <string name="copies">Kópií</string>
+    <string name="btnTest">skúška</string>
+    <string name="sdk_intro">Program RawBT má viac ako tri roky. Požiadavky na operačný systém sa menia. Po pridaní nových funkcií sa nahromadil technický dlh. Je čas na veľké prepracovanie kódu. Toto je prechodná verzia. Jeho hlavným účelom je skontrolovať kompatibilitu s predchádzajúcimi metódami integrácie.    Program teraz prevádza predchádzajúce metódy interakcie do nového formátu a v budúcnosti bude mať niektorý z nich status nežiaduceho. Presné dátumy zatiaľ nie sú známe. Sľubujem minimálne jeden rok podpory pre staré výzvy po oficiálnom prechode na nový API.    Ďalej uvádzame ukážku možností objasnenia požiadaviek na nové rozhranie API z vašej strany a testovania.</string>
+    <string name="sdk_main">Je predstavený koncept tlačovej úlohy.</string>
+    <string name="sdk_printjob">Pre ďalší vývoj programu som ustanovil výber tlačiarne a tlačovej šablóny.</string>
+    <string name="sdk_commands">Tlačová úloha pozostáva zo zoznamu tlačových príkazov. Napríklad tlač textu, tlač obrázkov atď. Na zjemnenie vzhľadu sa používajú zodpovedajúce triedy atribútov.</string>
+    <string name="sdk_print">Dostupné ovládanie štýlu a zarovnania písma.</string>
+    <string name="sdk_image">Atribúty obrázka: zarovnanie, mierka vzhľadom na šírku tlačiarní, grafický filter.</string>
+    <string name="sdk_barcode_1">Program sám generuje obrázok čiarového kódu. To vám umožní nezávisieť od technických možností samotnej tlačiarne.</string>
+    <string name="sdk_barcode_2">K dispozícii sú možnosti na prispôsobenie vzhľadu čiarového kódu.</string>
+    <string name="sdk_rich_1">Pre zjednodušenie bežných úloh som pridal množstvo funkcií. Nakreslite reťazec znakov na celú šírku tlačiarne. V budúcnosti pribudnú ďalšie: Zobrazenie tabuľky, QRkódu, zvukový signál, otvorenie schránky a ďalšie. Zhromažďovanie vašich potrieb.</string>
+    <string name="sdk_rich_format">Ďalšie možnosti formátovania</string>
+</resources>

@@ -2,4 +2,6 @@
 <resources>
     <string name="rawbt_connect_error">Chyba pri pripájaní k tlačovej službe RawBT</string>
     <string name="rawbt_permission_not_granted">Povolenie nebolo udelené</string>
+    <string name="rawb_not_installed">Tlačová služba RawBT nie je nainštalovaná</string>
+    <string name="rawbt_please_wait">Počkajte niekoľko sekúnd a skúste to znova.</string>
 </resources>

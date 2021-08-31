@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="btnTxtPrint">Stampare</string>
+    <string name="btnTest">Test</string>
+    <string name="printer">Una stampante</string>
+    <string name="template">Modello</string>
+    <string name="copies">Copie</string>
+    <string name="sdk_intro">Il programma RawBT ha più di tre anni. I requisiti del sistema operativo stanno cambiando. Il debito tecnico si è accumulato con l\'aggiunta di nuove funzionalità. È il momento per un grande refactoring del codice. Questa è una versione intermedia. Il suo scopo principale è verificare la compatibilità con i precedenti metodi di integrazione.    Il programma sta ora convertendo i metodi di interazione precedenti in un nuovo formato e, in futuro, alcuni di essi riceveranno lo stato di indesiderabile. Le date esatte non sono ancora note. Prometto almeno un anno di supporto per le vecchie chiamate dopo il passaggio ufficiale alla nuova API.    Di seguito è una dimostrazione delle possibilità per chiarire i requisiti per la nuova API da parte tua e testarli.</string>
+    <string name="sdk_main">Viene introdotto il concetto di lavoro di stampa.</string>
+    <string name="sdk_printjob">Per l\'ulteriore sviluppo del programma, stabilisco la scelta di una stampante e un modello di stampa.</string>
+    <string name="sdk_commands">Un lavoro di stampa è costituito da un elenco di comandi di stampa. Come la stampa di testo, la stampa di immagini, ecc. Le classi di attributi corrispondenti vengono utilizzate per perfezionare l\'aspetto.</string>
+    <string name="sdk_print">Controllo disponibile dello stile e dell\'allineamento del carattere.</string>
+    <string name="sdk_image">Attributi dell\'immagine: allineamento, scala in relazione alla larghezza delle stampanti, filtro grafico.</string>
+    <string name="sdk_barcode_1">Il programma genera da solo l\'immagine di un codice a barre. Ciò consente di non dipendere dalle capacità tecniche della stampante stessa.</string>
+    <string name="sdk_barcode_2">Sono disponibili opzioni per personalizzare l\'aspetto del codice a barre.</string>
+    <string name="sdk_rich_1">Per semplificare le attività comuni, ho aggiunto una serie di funzioni. Disegna una stringa di caratteri sull\'intera larghezza della stampante. In futuro, ne verranno aggiunti altri: visualizzare una tabella, QRcode, suonare un segnale, aprire una scatola e altro. Raccogli le tue esigenze.</string>
+    <string name="sdk_rich_format">Opzioni di formattazione aggiuntive</string>
+</resources>

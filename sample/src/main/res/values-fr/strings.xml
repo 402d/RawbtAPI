@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="btnTxtPrint">Impression</string>
+    <string name="btnTest">Tester</string>
+    <string name="printer">Une imprimante</string>
+    <string name="template">Modèle</string>
+    <string name="copies">Copies</string>
+    <string name="sdk_intro">Le programme RawBT a plus de trois ans. Les exigences du système d\'exploitation changent. La dette technique s\'est accumulée à mesure que de nouvelles fonctionnalités sont ajoutées. Il est temps de refactoriser le code. Ceci est une version intermédiaire. Son objectif principal est de vérifier la compatibilité avec les méthodes d\'intégration précédentes.    Le programme est en train de convertir les méthodes d\'interaction précédentes dans un nouveau format et, à l\'avenir, certaines d\'entre elles recevront le statut d\'indésirable. Les dates exactes ne sont pas encore connues. Je promets au moins un an de support pour les anciens appels après la transition officielle vers la nouvelle API.    Vous trouverez ci-dessous une démonstration des possibilités de clarifier les exigences de la nouvelle API de votre côté et de les tester.</string>
+    <string name="sdk_main">Le concept d\'un travail d\'impression est introduit.</string>
+    <string name="sdk_printjob">Pour le développement ultérieur du programme, je fixe le choix d\'une imprimante et d\'un modèle d\'impression.</string>
+    <string name="sdk_commands">Un travail d\'impression se compose d\'une liste de commandes d\'impression. Telles que l\'impression de texte, l\'impression d\'images, etc. Les classes d\'attributs correspondantes sont utilisées pour affiner l\'apparence.</string>
+    <string name="sdk_print">Contrôle disponible du style de police et de l\'alignement.</string>
+    <string name="sdk_image">Attributs d\'image: alignement, échelle par rapport à la largeur des imprimantes, filtre graphique.</string>
+    <string name="sdk_barcode_1">Le programme génère lui-même une image d\'un code-barres. Cela vous permet de ne pas dépendre des capacités techniques de l\'imprimante elle-même.</string>
+    <string name="sdk_barcode_2">Des options sont disponibles pour personnaliser l\'apparence du code-barres.</string>
+    <string name="sdk_rich_1">Pour simplifier les tâches courantes, j\'ai ajouté un certain nombre de fonctions. Dessinez une chaîne de caractères sur toute la largeur de l\'imprimante. Dans le futur, d\'autres seront ajoutés: afficher un tableau, un QRcode, faire retentir un signal, ouvrir une boîte et autres. Recueillir vos besoins.</string>
+    <string name="sdk_rich_format">Options de formatage supplémentaires</string>
+</resources>

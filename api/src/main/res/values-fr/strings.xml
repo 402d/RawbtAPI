@@ -2,4 +2,6 @@
 <resources>
     <string name="rawbt_connect_error">Erreur de connexion au service d\'impression RawBT</string>
     <string name="rawbt_permission_not_granted">Autorisation non accordée</string>
+    <string name="rawb_not_installed">Service d\'impression RawBT non installé</string>
+    <string name="rawbt_please_wait">Attendez quelques secondes et réessayez.</string>
 </resources>

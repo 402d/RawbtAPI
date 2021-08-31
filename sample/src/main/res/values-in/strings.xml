@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="btnTxtPrint">Mengafdruk</string>
+    <string name="btnTest">Uji</string>
+    <string name="printer">Sebuah printer</string>
+    <string name="template">Template</string>
+    <string name="copies">Salinan</string>
+    <string name="sdk_intro">Program RawBT sudah lebih dari tiga tahun. Persyaratan sistem operasi berubah. Hutang teknis telah terakumulasi saat fitur baru ditambahkan. Sudah waktunya untuk refactoring kode besar-besaran. Ini adalah versi perantara. Tujuan utamanya adalah untuk memeriksa kompatibilitas dengan metode integrasi sebelumnya.    Program ini sekarang mengubah metode interaksi sebelumnya menjadi format baru, dan di masa mendatang, beberapa di antaranya akan menerima status tidak diinginkan. Tanggal pastinya belum diketahui. Saya menjanjikan setidaknya satu tahun dukungan untuk panggilan lama setelah transisi resmi ke api baru.    Di bawah ini adalah demonstrasi kemungkinan untuk mengklarifikasi persyaratan untuk api baru dari pihak Anda dan pengujian.</string>
+    <string name="sdk_main">Konsep pekerjaan cetak diperkenalkan.</string>
+    <string name="sdk_printjob">Untuk pengembangan program lebih lanjut, saya memberikan pilihan printer dan template cetak.</string>
+    <string name="sdk_commands">Pekerjaan cetak terdiri dari daftar perintah cetak. Seperti pencetakan teks, pencetakan gambar, dll. Kelas atribut yang sesuai digunakan untuk memperhalus tampilan.</string>
+    <string name="sdk_print">Kontrol gaya font dan perataan yang tersedia.</string>
+    <string name="sdk_image">Atribut gambar: keselarasan, skala dalam kaitannya dengan lebar printer, filter grafik.</string>
+    <string name="sdk_barcode_1">Program ini menghasilkan gambar kode batang sendiri. Ini memungkinkan Anda untuk tidak bergantung pada kemampuan teknis printer itu sendiri.</string>
+    <string name="sdk_barcode_2">Pilihan tersedia untuk menyesuaikan tampilan kode batang.</string>
+    <string name="sdk_rich_1">Untuk menyederhanakan tugas umum, saya telah menambahkan sejumlah fungsi. Gambarkan string karakter dengan lebar penuh printer. Nantinya akan ditambahkan yang lain: Menampilkan tabel, QRcode, membunyikan sinyal, membuka kotak dan lain-lain. Mengumpulkan kebutuhan Anda.</string>
+    <string name="sdk_rich_format">Opsi pemformatan tambahan</string>
+</resources>

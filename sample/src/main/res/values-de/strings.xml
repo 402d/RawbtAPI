@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="btnTxtPrint">Drucken</string>
+    <string name="btnTest">Zu testen</string>
+    <string name="printer">Drucker</string>
+    <string name="template">Dokumentvorlage</string>
+    <string name="copies">Kopien</string>
+    <string name="sdk_intro">Das RawBT-Programm ist über drei Jahre alt. Die Anforderungen an das Betriebssystem ändern sich. Technische Schulden haben sich angesammelt, als neue Funktionen hinzugefügt wurden. Es ist Zeit für ein umfangreiches Refactoring des Codes. Dies ist eine Zwischenversion. Der Hauptzweck besteht darin, die Kompatibilität mit den vorherigen Integrationsmethoden zu überprüfen.    Das Programm konvertiert jetzt die vorherigen Interaktionsmethoden in ein neues Format, und in Zukunft werden einige von ihnen den Status \"unerwünscht\" erhalten. Die genauen Daten sind noch nicht bekannt. Ich verspreche mindestens ein Jahr Unterstützung für alte Anrufe nach dem offiziellen Übergang zur neuen API.    Im Folgenden finden Sie eine Demonstration der Möglichkeiten, die Anforderungen für die neue API von Ihrer Seite zu klären und zu testen.</string>
+    <string name="sdk_main">Das Konzept eines Druckauftrags wird vorgestellt.</string>
+    <string name="sdk_commands">Ein Druckauftrag besteht aus einer Liste von Druckbefehlen. Wie Textdruck, Bilddruck usw. Die entsprechenden Attributklassen werden verwendet, um das Erscheinungsbild zu verfeinern.</string>
+    <string name="sdk_printjob">Für die Weiterentwicklung des Programms habe ich die Wahl eines Druckers und einer Druckvorlage festgelegt.</string>
+    <string name="sdk_print">Verfügbare Kontrolle über Schriftstil und Ausrichtung.</string>
+    <string name="sdk_image">Bildattribute: Ausrichtung, Skalierung in Bezug auf die Breite der Drucker, Grafikfilter.</string>
+    <string name="sdk_barcode_1">Das Programm generiert selbst ein Bild eines Barcodes. Auf diese Weise können Sie sich nicht auf die technischen Funktionen des Druckers selbst verlassen.</string>
+    <string name="sdk_barcode_2">Es stehen Optionen zur Verfügung, um das Erscheinungsbild des Barcodes anzupassen.</string>
+    <string name="sdk_rich_1">Um allgemeine Aufgaben zu vereinfachen, habe ich eine Reihe von Funktionen hinzugefügt. Zeichnen Sie eine Zeichenfolge auf die gesamte Breite des Druckers. In Zukunft werden weitere hinzugefügt: Zeigen Sie eine Tabelle, einen QR-Code an, geben Sie ein Signal aus, öffnen Sie eine Box und andere. Sammeln Sie Ihre Bedürfnisse.</string>
+    <string name="sdk_rich_format">Zusätzliche Formatierungsoptionen</string>
+</resources>

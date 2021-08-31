@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="btnTxtPrint">baskı</string>
+    <string name="btnTest">Ölçek</string>
+    <string name="printer">Yazıcı</string>
+    <string name="template">Şablonu</string>
+    <string name="copies">Kopya</string>
+    <string name="sdk_intro">RawBT programı üç yaşın üzerindedir. İşletim sistemi gereksinimleri değişiyor. Yeni özellikler eklendikçe teknik borç birikmiştir. Kod için büyük bir yeniden düzenleme zamanı. Bu bir ara versiyondur. Ana amacı, önceki entegrasyon yöntemleriyle uyumluluğu kontrol etmektir.    Program şimdi önceki etkileşim yöntemlerini yeni bir formata dönüştürüyor ve gelecekte bazıları istenmeyen statüsü alacak. Kesin tarihler henüz bilinmiyor. Yeni api\'ye resmi geçişten sonra eski aramalar için en az bir yıllık destek sözü veriyorum.    Aşağıda, yeni api için gereksinimleri sizin tarafınızdan netleştirme ve test etme olasılıklarının bir gösterimi bulunmaktadır.</string>
+    <string name="sdk_main">Baskı işi kavramı tanıtıldı.</string>
+    <string name="sdk_printjob">Programın daha da geliştirilmesi için bir yazıcı ve bir baskı şablonu seçimi yaptım.</string>
+    <string name="sdk_commands">Bir yazdırma işi, bir yazdırma komutları listesinden oluşur. Metin baskısı, resim baskısı, vb. Gibi Karşılık gelen öznitelik sınıfları, görünümü iyileştirmek için kullanılır.</string>
+    <string name="sdk_print">Yazı tipi stili ve hizalamasının mevcut kontrolü.</string>
+    <string name="sdk_image">Görüntü nitelikleri: hizalama, yazıcı genişliğine göre ölçekleme, grafik filtresi.</string>
+    <string name="sdk_barcode_1">Program kendi başına bir barkod resmi oluşturur. Bu, yazıcının kendi teknik özelliklerine bağlı kalmamanıza izin verir.</string>
+    <string name="sdk_barcode_2">Barkodun görünümünü özelleştirmek için seçenekler mevcuttur.</string>
+    <string name="sdk_rich_1">Genel görevleri basitleştirmek için bir dizi işlev ekledim. Yazıcının tam genişliğine kadar bir karakter dizisi çizin. Gelecekte diğerleri eklenecek: Bir tablo göster, QRcode, bir sinyal sesi, bir kutu aç ve diğerleri. İhtiyaçlarınızı topluyoruz.</string>
+    <string name="sdk_rich_format">Ek biçimlendirme seçenekleri</string>
+</resources>

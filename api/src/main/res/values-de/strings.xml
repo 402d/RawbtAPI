@@ -2,4 +2,6 @@
 <resources>
     <string name="rawbt_connect_error">Fehler beim Verbinden mit dem RawBT-Druckdienst</string>
     <string name="rawbt_permission_not_granted">Erlaubnis nicht erteilt</string>
+    <string name="rawb_not_installed">RawBT-Druckdienst nicht installiert</string>
+    <string name="rawbt_please_wait">Warten Sie einige Sekunden und versuchen Sie es erneut.</string>
 </resources>

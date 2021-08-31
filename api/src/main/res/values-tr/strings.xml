@@ -2,4 +2,6 @@
 <resources>
     <string name="rawbt_connect_error">RawBT yazdırma hizmetine bağlanırken hata oluştu</string>
     <string name="rawbt_permission_not_granted">İzin verilmedi</string>
+    <string name="rawb_not_installed">RawBT Yazdırma Hizmeti Yüklenmedi</string>
+    <string name="rawbt_please_wait">Birkaç saniye bekleyin ve tekrar deneyin.</string>
 </resources>

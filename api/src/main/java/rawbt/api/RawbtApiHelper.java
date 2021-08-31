@@ -13,6 +13,8 @@ import static rawbt.api.RawbtPrintJob.EXTRA_JOB;
 public class RawbtApiHelper {
     public static final String SERVICE_PERMISSION = "ru.a402d.rawbtprinter.PERMISSION";
     public static final String SERVICE_PACKAGE = "ru.a402d.rawbtprinter";
+
+
     public static void startActionPrintJob(Context context, RawbtPrintJob job) {
         try {
             Gson gson = new Gson();
@@ -39,7 +41,7 @@ public class RawbtApiHelper {
         return intent;
     }
 
-    public boolean isServiceInstalled(Context context) {
+    static public boolean isServiceInstalled(Context context) {
         PackageManager packageManager = context.getPackageManager();
         try {
             packageManager.getPackageInfo(RawbtApiHelper.SERVICE_PACKAGE, 0);
