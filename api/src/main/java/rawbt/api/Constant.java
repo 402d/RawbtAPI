@@ -12,6 +12,7 @@ public class Constant {
     public static final int DITHERING_BEST_CONTRAST = 6;
     public static final int DITHERING_REGULAR = 7 ;
     public static final int DITHERING_NONE_RESIZE_ONLY = 8 ;
+    public static final int DITHERING_127 = 9;
 
 
     public static final int FONT_DEFAULT = 0;

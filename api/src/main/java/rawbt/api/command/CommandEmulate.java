@@ -9,8 +9,8 @@ public class CommandEmulate implements RawbtCommand{
     final public static String TAG = "emulate"; // for GSON
     String command = TAG;
 
-    String parcelable = null;
-    String mode = null;
+    String parcelable;
+    String mode;
 
     public CommandEmulate(@NonNull Parcelable parcelable, @NonNull String mode) {
         this.parcelable = parcelable.toString();
