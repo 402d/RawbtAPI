@@ -18,8 +18,12 @@ public class AttributesPdf implements Parcelable {
     private int rotate = 0; // 0,90,270
     private boolean clearHeaderAndFooter = false;
     private boolean cutTop = false;
-    private int cutTopVal;
-    private boolean printAfterPageCut = false;
+    private int cutTopVal = 0;
+
+    private boolean cutFrame = false;
+    private int cutFrameVal = 0;
+
+    private boolean paperCutAfterEachPage = false;
 
 
 
@@ -45,14 +49,20 @@ public class AttributesPdf implements Parcelable {
     public int getCutTopVal() {
         return cutTopVal;
     }
-    public boolean isPrintAfterPageCut() {
-        return printAfterPageCut;
+    public boolean isPaperCutAfterEachPage() {
+        return paperCutAfterEachPage;
     }
     public boolean isRoll() {
         return roll;
     }
     public int getRotate() {
         return rotate;
+    }
+    public boolean isCutFrame() {
+        return cutFrame;
+    }
+    public int getCutFrameVal() {
+        return cutFrameVal;
     }
 
     public AttributesPdf setPage(int page) {
@@ -90,12 +100,22 @@ public class AttributesPdf implements Parcelable {
         return this;
     }
 
-    public AttributesPdf setPrintAfterPageCut(boolean printAfterPageCut) {
-        this.printAfterPageCut = printAfterPageCut;
+    public AttributesPdf setPaperCutAfterEachPage(boolean paperCutAfterEachPage) {
+        this.paperCutAfterEachPage = paperCutAfterEachPage;
         return this;
     }
 
-// implements parcelable
+    public AttributesPdf setCutFrame(boolean cutFrame) {
+        this.cutFrame = cutFrame;
+        return this;
+    }
+
+    public AttributesPdf setCutFrameVal(int cutFrameVal) {
+        this.cutFrameVal = cutFrameVal;
+        return this;
+    }
+
+    // implements parcelable
 
     protected AttributesPdf(Parcel in) {
         page = in.readInt();
@@ -103,9 +123,11 @@ public class AttributesPdf implements Parcelable {
         clearHeaderAndFooter = in.readByte() != 0;
         cutTop = in.readByte() != 0;
         cutTopVal = in.readInt();
-        printAfterPageCut = in.readByte() != 0;
+        paperCutAfterEachPage = in.readByte() != 0;
         roll = in.readByte() != 0;
         rotate = in.readInt();
+        cutFrame = in.readByte() != 0;
+        cutFrameVal = in.readInt();
     }
 
     @Override
@@ -115,9 +137,11 @@ public class AttributesPdf implements Parcelable {
         dest.writeByte((byte) (clearHeaderAndFooter ? 1 : 0));
         dest.writeByte((byte) (cutTop ? 1 : 0));
         dest.writeInt(cutTopVal);
-        dest.writeByte((byte) (printAfterPageCut ? 1 : 0));
+        dest.writeByte((byte) (paperCutAfterEachPage ? 1 : 0));
         dest.writeByte((byte) (roll ? 1 : 0));
         dest.writeInt(rotate);
+        dest.writeByte((byte) (cutFrame ? 1 : 0));
+        dest.writeInt(cutFrameVal);
     }
 
     @Override
