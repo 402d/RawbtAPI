@@ -41,6 +41,7 @@ public class RawbtPrintJob {
     public final static String PRINTER_CURRENT = "current";
     public final static String PRINTER_VIRTUAL = "virtual";
     public final static String PRINTER_RAW_TRANSFER = "raw_transfer";
+    public final static String PRINTER_GALLERY = "save_into_gallery";
 
     String printer = PRINTER_CURRENT;
 
