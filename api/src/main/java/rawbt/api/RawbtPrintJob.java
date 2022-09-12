@@ -1,5 +1,7 @@
 package rawbt.api;
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import com.google.gson.Gson;
@@ -15,6 +17,7 @@ import rawbt.api.command.CommandCut;
 import rawbt.api.command.CommandDelimiterImages;
 import rawbt.api.command.CommandDrawLine;
 import rawbt.api.command.CommandEmulate;
+import rawbt.api.command.CommandImageInBase64;
 import rawbt.api.command.CommandLeftRightText;
 import rawbt.api.command.CommandNewLine;
 import rawbt.api.command.CommandParcelable;
@@ -200,6 +203,15 @@ public class RawbtPrintJob {
     public void image(@NonNull Parcelable parcelable,@NonNull  AttributesImage attributesImage){
         CommandParcelable command = new CommandParcelable(parcelable, Constant.RAWBT_CONTENT_TYPE.image);
         command.setAttributesImage(attributesImage);
+        commands.add(command);
+    }
+
+    public void image64(@NonNull Context context,@NonNull Uri uri){
+        image64(context,uri, getDefaultAttrImage());
+    }
+
+    public void image64(@NonNull Context context, @NonNull Uri uri, @NonNull  AttributesImage attributesImage){
+        CommandImageInBase64 command = new CommandImageInBase64(context,uri,attributesImage);
         commands.add(command);
     }
 

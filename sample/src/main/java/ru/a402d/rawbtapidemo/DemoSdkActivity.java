@@ -27,7 +27,7 @@ import rawbt.api.RawbtPrintJob;
 import static rawbt.api.Constant.*;
 
 // extend AppCompatWithRawbtActivity or AppCompatWithRawbtWsActivity
-public class DemoSdkActivity extends AppCompatWithRawbtActivity {
+public class DemoSdkActivity extends AppCompatWithRawbtWsActivity {
 
     private final RawbtPrintJob attrJob = new RawbtPrintJob();
 
@@ -349,31 +349,31 @@ public class DemoSdkActivity extends AppCompatWithRawbtActivity {
 
         job.println("Images",attrStrTitle);
         job.println("The picture is scaled to the width of the printer as a fraction. 16/16 means full width.Values 1-16 allowed.");
-        job.image(uri);
+        job.image64(this,uri);
         job.ln();
         job.println("Scale 16(default) - full width");
         job.ln();
 
         AttributesImage im50center = new AttributesImage().setScale(8).setAlignment(ALIGNMENT_CENTER);
-        job.image(uri,im50center);
+        job.image64(this,uri,im50center);
         job.ln();
         job.println("Scale: 8(50%). Alignment: center");
         job.ln();
 
         AttributesImage im75right = new AttributesImage().setScale(12).setAlignment(ALIGNMENT_RIGHT);
-        job.image(uri,im75right);
+        job.image64(this,uri,im75right);
         job.ln();
         job.println("Scale: 12(75%). Alignment: right");
         job.ln();
 
         AttributesImage im25left = new AttributesImage().setScale(4).setAlignment(ALIGNMENT_LEFT);
-        job.image(uri,im25left);
+        job.image64(this,uri,im25left);
         job.ln();
         job.println("Scale: 4(25%). Alignment: left");
         job.ln();
 
         AttributesImage imRotated = new AttributesImage().setRotateImage(true);
-        job.image(uri,imRotated);
+        job.image64(this,uri,imRotated);
         job.ln();
         job.println("Rotate");
         job.ln(3);

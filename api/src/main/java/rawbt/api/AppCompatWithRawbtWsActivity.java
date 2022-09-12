@@ -4,6 +4,8 @@ package rawbt.api;
 import static rawbt.api.RawbtPrintJob.EXTRA_JOB;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.RemoteException;
 import android.util.Log;
 
@@ -23,6 +25,8 @@ import java.net.URISyntaxException;
 
 abstract public class AppCompatWithRawbtWsActivity extends AppCompatActivity {
 
+    final protected Handler handler = new Handler(Looper.getMainLooper());
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,16 +44,16 @@ abstract public class AppCompatWithRawbtWsActivity extends AppCompatActivity {
                         Gson gson = gsonBuilder.create();
                         RawbtResponse response = gson.fromJson(message, RawbtResponse.class);
                         if(RawbtResponse.RESPONSE_SUCCESS.equals(response.getResponseType())){
-                            handlePrintSuccess(response.getJobId());
+                            handler.post(()->handlePrintSuccess(response.getJobId()));
                         }else if(RawbtResponse.RESPONSE_CANCELED.equals(response.getResponseType())){
-                            handlePrintCancel(response.getJobId());
+                            handler.post(()->handlePrintCancel(response.getJobId()));
                         }else if(RawbtResponse.RESPONSE_ERROR.equals(response.getResponseType())){
-                            handlePrintError(response.getJobId(),response.getErrorMessage());
+                            handler.post(()->handlePrintError(response.getJobId(),response.getErrorMessage()));
                         }else if(RawbtResponse.RESPONSE_PROGRESS.equals(response.getResponseType())){
-                            handlePrintProgress(response.getJobId(),response.getProgress());
+                            handler.post(()->handlePrintProgress(response.getJobId(),response.getProgress()));
                         }
                     }catch (Exception e){
-                        handlePrintError(null,e.getClass().getSimpleName());
+                        handler.post(()->handlePrintError(null,e.getClass().getSimpleName()));
                     }
                 }
 
@@ -60,7 +64,7 @@ abstract public class AppCompatWithRawbtWsActivity extends AppCompatActivity {
 
                 @Override
                 public void onError(Exception ex) {
-                    handlePrintError(null,ex.getClass().getSimpleName());
+                    handler.post(()->handlePrintError(null,ex.getClass().getSimpleName()));
                 }
             };
             client.connect();
@@ -78,7 +82,11 @@ abstract public class AppCompatWithRawbtWsActivity extends AppCompatActivity {
     WebSocketClient client;
 
     protected void printJob(@NonNull RawbtPrintJob job){
-        client.send(job.GSON());
+        try {
+            client.send(job.GSON());
+        }catch (Exception e){
+            handlePrintError(job.getIdJob(),e.getClass().getSimpleName());
+        }
     }
 
     abstract protected void handleServiceConnected();
