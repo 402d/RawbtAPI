@@ -34,7 +34,7 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
                 serviceRawBT.registerCallback(serviceCallback);
                 handler.post(()-> handleServiceConnected());
             } catch (Exception e) {
-                handlePrintError(null,e.getLocalizedMessage());
+                handlePrintError(null,e.getMessage());
             }
         }
 

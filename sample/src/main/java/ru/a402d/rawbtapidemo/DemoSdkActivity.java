@@ -17,6 +17,8 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import java.util.ArrayList;
 
 import rawbt.api.AppCompatWithRawbtActivity;
+import rawbt.api.AppCompatWithRawbtWsActivity;
+
 import rawbt.api.attributes.AttributesBarcode;
 import rawbt.api.attributes.AttributesString;
 import rawbt.api.attributes.AttributesImage;
@@ -24,7 +26,7 @@ import rawbt.api.command.CommandBarcode;
 import rawbt.api.RawbtPrintJob;
 import static rawbt.api.Constant.*;
 
-
+// extend AppCompatWithRawbtActivity or AppCompatWithRawbtWsActivity
 public class DemoSdkActivity extends AppCompatWithRawbtActivity {
 
     private final RawbtPrintJob attrJob = new RawbtPrintJob();
@@ -524,6 +526,7 @@ public class DemoSdkActivity extends AppCompatWithRawbtActivity {
 
     @Override
     protected void handlePrintError(@Nullable String jobId, String message) {
+        if(message == null) return;
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
 
