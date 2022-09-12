@@ -39,14 +39,14 @@ abstract public class AppCompatWithRawbtWsActivity extends AppCompatActivity {
                         GsonBuilder gsonBuilder = new GsonBuilder();
                         Gson gson = gsonBuilder.create();
                         RawbtResponse response = gson.fromJson(message, RawbtResponse.class);
-                        if(RawbtResponse.RESPONSE_SUCCESS.equals(response.responseType)){
-                            handlePrintSuccess(response.jobId);
-                        }else if(RawbtResponse.RESPONSE_CANCELED.equals(response.responseType)){
-                            handlePrintCancel(response.jobId);
-                        }else if(RawbtResponse.RESPONSE_ERROR.equals(response.responseType)){
-                            handlePrintError(response.jobId,response.errorMessage);
-                        }else if(RawbtResponse.RESPONSE_PROGRESS.equals(response.responseType)){
-                            handlePrintProgress(response.jobId,response.progress);
+                        if(RawbtResponse.RESPONSE_SUCCESS.equals(response.getResponseType())){
+                            handlePrintSuccess(response.getJobId());
+                        }else if(RawbtResponse.RESPONSE_CANCELED.equals(response.getResponseType())){
+                            handlePrintCancel(response.getJobId());
+                        }else if(RawbtResponse.RESPONSE_ERROR.equals(response.getResponseType())){
+                            handlePrintError(response.getJobId(),response.getErrorMessage());
+                        }else if(RawbtResponse.RESPONSE_PROGRESS.equals(response.getResponseType())){
+                            handlePrintProgress(response.getJobId(),response.getProgress());
                         }
                     }catch (Exception e){
                         handlePrintError(null,e.getClass().getSimpleName());
