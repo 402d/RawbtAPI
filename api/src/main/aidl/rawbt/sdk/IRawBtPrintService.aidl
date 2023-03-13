@@ -10,6 +10,7 @@ interface IRawBtPrintService {
     void registerConsole(in IConsole console);
     void unregisterConsole(in IConsole console);
     void printerConnect();
+    void printerConnectByName(in String name);
     void printerDisconnect();
     void printerSend(in byte[] rawData);
     void sendFile(in Uri uri,in boolean isUtfText, in String needCP);

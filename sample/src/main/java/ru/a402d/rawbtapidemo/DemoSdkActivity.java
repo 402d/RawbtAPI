@@ -27,7 +27,7 @@ import rawbt.api.RawbtPrintJob;
 import static rawbt.api.Constant.*;
 
 // extend AppCompatWithRawbtActivity or AppCompatWithRawbtWsActivity
-public class DemoSdkActivity extends AppCompatWithRawbtWsActivity {
+public class DemoSdkActivity extends AppCompatWithRawbtActivity {
 
     private final RawbtPrintJob attrJob = new RawbtPrintJob();
 
