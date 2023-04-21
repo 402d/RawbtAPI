@@ -9,12 +9,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import android.util.Log;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import rawbt.sdk.ICallback;
 import rawbt.sdk.IRawBtPrintService;
@@ -122,6 +126,8 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
         }
     }
 
+    final ExecutorService executor = Executors.newSingleThreadExecutor();
+
     protected void printJob(@NonNull RawbtPrintJob job){
         if(serviceRawBT == null){
             if(!RawbtApiHelper.isServiceInstalled(this)){
@@ -132,14 +138,21 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
             handlePrintError(job.idJob,getString(R.string.rawbt_please_wait));
             return;
         }
+        Log.d("DEMO","1");
+        executor.execute(()->{
+            Log.d("DEMO","2");
+            try{
+                String gson = job.GSON();
+                Log.d("DEMO","3");
+                serviceRawBT.printRawbtPrintJob(gson);
+                Log.d("DEMO","4");
+            }catch (SecurityException s){
+                handler.post(() -> handlePrintError(job.idJob,getString(R.string.rawbt_permission_not_granted)));
+            }catch (Exception e){
+                handler.post(() -> handlePrintError(job.idJob,e.getLocalizedMessage()));
+            }
+        });
 
-        try{
-            serviceRawBT.printRawbtPrintJob(job.GSON());
-        }catch (SecurityException s){
-            handlePrintError(job.idJob,getString(R.string.rawbt_permission_not_granted));
-        }catch (Exception e){
-            handlePrintError(job.idJob,e.getLocalizedMessage());
-        }
     }
 
     abstract protected void handleServiceConnected();

@@ -2,6 +2,7 @@ package rawbt.sdk;
 
 import rawbt.sdk.ICallback;
 import rawbt.sdk.IConsole;
+import rawbt.sdk.IGetPrintersCallback;
 
 interface IRawBtPrintService {
     void printRawbtPrintJob(in String jobJSON);
@@ -14,4 +15,6 @@ interface IRawBtPrintService {
     void printerDisconnect();
     void printerSend(in byte[] rawData);
     void sendFile(in Uri uri,in boolean isUtfText, in String needCP);
+    // new
+    void getPrinters(in IGetPrintersCallback callback);
 }
