@@ -56,7 +56,7 @@ public class DemoSdkActivity extends AppCompatWithRawbtActivity {
 
         attrJob.setCopies(1);
 
-        Spinner spinnerSelectPrinter = findViewById(R.id.spinnerSelectPrinter);
+        spinnerSelectPrinter = findViewById(R.id.spinnerSelectPrinter);
 
         adapterSelectPrinter = new SelectPrinterAdapter(this,android.R.layout.simple_spinner_item);
         adapterSelectPrinter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
@@ -530,6 +530,11 @@ public class DemoSdkActivity extends AppCompatWithRawbtActivity {
     @Override
     protected void handlePrintProgress(String jobId, Float p) {
         // nothing
+    }
+
+    @Override
+    protected String getSelectedPrinterName() {
+        return ""; // return previous selected name
     }
 
 }
