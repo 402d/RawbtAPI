@@ -37,14 +37,17 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
 
         @Override
         public void onResult(PrinterInfo[] printers) throws RemoteException {
-            adapterSelectPrinter.clear();
+            handler.post(()-> {
+                    adapterSelectPrinter.clear();
             PrinterInfo p1 = new PrinterInfo();
-            p1.name="current";p1.description="current";
+            p1.name = "current";
+            p1.description = "Default";
             adapterSelectPrinter.add(p1);
-            for(PrinterInfo info : printers) {
+            for (PrinterInfo info : printers) {
                 adapterSelectPrinter.add(info);
             }
             adapterSelectPrinter.notifyDataSetChanged();
+            });
         }
     };
     private final ServiceConnection connectService = new ServiceConnection() {
@@ -59,7 +62,7 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
                     boolean flag = serviceRawBT.getPrinters(getPrintersCallback);
                     if(!flag){
                         PrinterInfo p1 = new PrinterInfo();
-                        p1.name="current";p1.description="Current";
+                        p1.name="current";p1.description="Default";
                         adapterSelectPrinter.add(p1);
                         adapterSelectPrinter.notifyDataSetChanged();
                     }
