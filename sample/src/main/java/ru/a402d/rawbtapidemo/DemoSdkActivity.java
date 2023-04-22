@@ -15,10 +15,11 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import rawbt.api.AppCompatWithRawbtActivity;
-import rawbt.api.AppCompatWithRawbtWsActivity;
 
+import rawbt.api.SelectPrinterAdapter;
 import rawbt.api.attributes.AttributesBarcode;
 import rawbt.api.attributes.AttributesString;
 import rawbt.api.attributes.AttributesImage;
@@ -28,6 +29,8 @@ import static rawbt.api.Constant.*;
 
 // extend AppCompatWithRawbtActivity or AppCompatWithRawbtWsActivity
 public class DemoSdkActivity extends AppCompatWithRawbtActivity {
+
+
 
     private final RawbtPrintJob attrJob = new RawbtPrintJob();
 
@@ -54,17 +57,17 @@ public class DemoSdkActivity extends AppCompatWithRawbtActivity {
         attrJob.setCopies(1);
 
         Spinner spinnerSelectPrinter = findViewById(R.id.spinnerSelectPrinter);
-        ArrayAdapter<String> adapterSelectPrinter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,getPrinterList());
+
+        adapterSelectPrinter = new SelectPrinterAdapter(this,android.R.layout.simple_spinner_item);
         adapterSelectPrinter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spinnerSelectPrinter.setAdapter(adapterSelectPrinter);
         spinnerSelectPrinter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position==1){
-                    attrJob.setPrinter(RawbtPrintJob.PRINTER_VIRTUAL);
-                }else{
-                    attrJob.setPrinter(RawbtPrintJob.PRINTER_CURRENT);
-                }
+                    if(adapterSelectPrinter.getCount()<1) return;
+                    try {
+                        attrJob.setPrinter(Objects.requireNonNull(adapterSelectPrinter.getItem(position)).name);
+                    }catch (Exception ignored){}
             }
 
             @Override
@@ -135,12 +138,6 @@ public class DemoSdkActivity extends AppCompatWithRawbtActivity {
 
     // ------------------------------
 
-    private ArrayList<String> getPrinterList() {
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add(RawbtPrintJob.PRINTER_CURRENT);
-        arrayList.add(RawbtPrintJob.PRINTER_VIRTUAL);
-        return arrayList;
-    }
 
     private ArrayList<String> getTemplateList() {
         ArrayList<String> arrayList = new ArrayList<>();

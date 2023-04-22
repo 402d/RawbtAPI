@@ -9,7 +9,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
-import android.util.Log;
+import android.os.RemoteException;
+
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -21,14 +22,31 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import rawbt.sdk.ICallback;
+import rawbt.sdk.IGetPrintersCallback;
 import rawbt.sdk.IRawBtPrintService;
+import rawbt.sdk.PrinterInfo;
 
 abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
 
     final protected Handler handler = new Handler(Looper.getMainLooper());
     // -----------------------------------------
+    public SelectPrinterAdapter adapterSelectPrinter;
 
     public volatile IRawBtPrintService serviceRawBT = null;
+    private final IGetPrintersCallback getPrintersCallback = new IGetPrintersCallback.Stub() {
+
+        @Override
+        public void onResult(PrinterInfo[] printers) throws RemoteException {
+            adapterSelectPrinter.clear();
+            PrinterInfo p1 = new PrinterInfo();
+            p1.name="current";p1.description="current";
+            adapterSelectPrinter.add(p1);
+            for(PrinterInfo info : printers) {
+                adapterSelectPrinter.add(info);
+            }
+            adapterSelectPrinter.notifyDataSetChanged();
+        }
+    };
     private final ServiceConnection connectService = new ServiceConnection() {
 
         @Override
@@ -37,6 +55,17 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
             try {
                 serviceRawBT.registerCallback(serviceCallback);
                 handler.post(()-> handleServiceConnected());
+                try{
+                    boolean flag = serviceRawBT.getPrinters(getPrintersCallback);
+                    if(!flag){
+                        PrinterInfo p1 = new PrinterInfo();
+                        p1.name="current";p1.description="Current";
+                        adapterSelectPrinter.add(p1);
+                        adapterSelectPrinter.notifyDataSetChanged();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             } catch (Exception e) {
                 handlePrintError(null,e.getMessage());
             }
@@ -138,14 +167,10 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
             handlePrintError(job.idJob,getString(R.string.rawbt_please_wait));
             return;
         }
-        Log.d("DEMO","1");
         executor.execute(()->{
-            Log.d("DEMO","2");
             try{
                 String gson = job.GSON();
-                Log.d("DEMO","3");
                 serviceRawBT.printRawbtPrintJob(gson);
-                Log.d("DEMO","4");
             }catch (SecurityException s){
                 handler.post(() -> handlePrintError(job.idJob,getString(R.string.rawbt_permission_not_granted)));
             }catch (Exception e){

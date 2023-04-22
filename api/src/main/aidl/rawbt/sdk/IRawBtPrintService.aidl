@@ -16,5 +16,5 @@ interface IRawBtPrintService {
     void printerSend(in byte[] rawData);
     void sendFile(in Uri uri,in boolean isUtfText, in String needCP);
     // new
-    void getPrinters(in IGetPrintersCallback callback);
+    boolean getPrinters(in IGetPrintersCallback callback);
 }
