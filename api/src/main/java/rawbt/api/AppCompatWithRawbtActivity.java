@@ -30,6 +30,7 @@ import rawbt.sdk.PrinterInfo;
 abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
 
     final protected Handler handler = new Handler(Looper.getMainLooper());
+    final ExecutorService executor = Executors.newSingleThreadExecutor();
     final ICallback serviceCallback = new ICallback.Stub() {
 
         @Override
@@ -60,7 +61,7 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
 
 
     };
-    final ExecutorService executor = Executors.newSingleThreadExecutor();
+
     // -----------------------------------------
     protected SelectPrinterAdapter adapterSelectPrinter;
     protected Spinner spinnerSelectPrinter;

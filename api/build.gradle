@@ -11,6 +11,10 @@ android {
         targetSdkVersion 32
     }
 
+    buildFeatures {
+        aidl true
+    }
+
     buildTypes {
         buildTypes {
             release {
@@ -23,6 +27,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    namespace 'rawbt.api'
 }
 
 dependencies {
