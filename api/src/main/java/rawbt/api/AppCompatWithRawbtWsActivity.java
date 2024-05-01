@@ -40,8 +40,8 @@ abstract public class AppCompatWithRawbtWsActivity extends AppCompatActivity {
         @Override
         public void onOpen(ServerHandshake handshake) {
             isConnected = true;
+            handler.post(AppCompatWithRawbtWsActivity.this::handleServiceConnected);
             getPrinters();
-            handleServiceConnected();
         }
 
         @Override
@@ -61,6 +61,7 @@ abstract public class AppCompatWithRawbtWsActivity extends AppCompatActivity {
                 }else if(RawbtResponse.RESPONSE_PRINTERS.equals(response.getResponseType())){
 
                     handler.post(() -> {
+                        if(adapterSelectPrinter == null) return;
                         int curId = -1;
                         String needName = getSelectedPrinterName();
                         adapterSelectPrinter.clear();
@@ -104,7 +105,7 @@ abstract public class AppCompatWithRawbtWsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        myConnect();
+        handler.postDelayed(this::myConnect,500);
     }
 
     private void myConnect(){
@@ -138,13 +139,10 @@ abstract public class AppCompatWithRawbtWsActivity extends AppCompatActivity {
         });
     }
 
-    protected boolean getPrinters(){
+    protected void getPrinters(){
         try {
             client.send("GET_PRINTERS");
-        }catch (Exception e){
-            return false;
-        }
-        return true;
+        }catch (Exception ignored){}
     }
 
     abstract protected void handleServiceConnected();

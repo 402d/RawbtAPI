@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import rawbt.api.AppCompatWithRawbtActivity;
+import rawbt.api.AppCompatWithRawbtWsActivity;
 
 import rawbt.api.SelectPrinterAdapter;
 import rawbt.api.attributes.AttributesBarcode;

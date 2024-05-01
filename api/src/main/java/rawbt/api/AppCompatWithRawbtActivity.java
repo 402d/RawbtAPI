@@ -61,15 +61,18 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
 
 
     };
-
     // -----------------------------------------
-    protected SelectPrinterAdapter adapterSelectPrinter;
+    public volatile IRawBtPrintService serviceRawBT = null;
+    // -----------------------------------------
+    @Nullable
+    protected SelectPrinterAdapter adapterSelectPrinter = null;
     protected Spinner spinnerSelectPrinter;
     private final IGetPrintersCallback getPrintersCallback = new IGetPrintersCallback.Stub() {
 
         @Override
         public void onResult(PrinterInfo[] printers) throws RemoteException {
             handler.post(() -> {
+                if (adapterSelectPrinter == null) return;
                 int curId = -1;
                 String needName = getSelectedPrinterName();
                 adapterSelectPrinter.clear();
@@ -80,18 +83,19 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
                 int i = 1;
                 for (PrinterInfo info : printers) {
                     adapterSelectPrinter.add(info);
-                    if(needName.equals(info.name)){
+                    if (needName.equals(info.name)) {
                         curId = i;
                     }
                     i++;
                 }
                 adapterSelectPrinter.notifyDataSetChanged();
-                if(curId>-1){
+                if (curId > -1) {
                     spinnerSelectPrinter.setSelection(curId);
                 }
             });
         }
-    };    private final ServiceConnection connectService = new ServiceConnection() {
+    };
+    private final ServiceConnection connectService = new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder s) {
@@ -99,18 +103,7 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
             try {
                 serviceRawBT.registerCallback(serviceCallback);
                 handler.post(() -> handleServiceConnected());
-                try {
-                    boolean flag = serviceRawBT.getPrinters(getPrintersCallback);
-                    if (!flag) {
-                        PrinterInfo p1 = new PrinterInfo();
-                        p1.name = "current";
-                        p1.description = "Default";
-                        adapterSelectPrinter.add(p1);
-                        adapterSelectPrinter.notifyDataSetChanged();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                getPrinters();
             } catch (Exception e) {
                 handlePrintError(null, e.getMessage());
             }
@@ -124,10 +117,11 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
 
     };
 
-    // -----------------------------------------
-    public volatile IRawBtPrintService serviceRawBT = null;
-
     protected void bindRawBT(boolean allowRequestPerm) {
+        if (!RawbtApiHelper.isServiceInstalled(this)) {
+            handlePrintError(null, getString(R.string.rawb_not_installed));
+            return;
+        }
         try {
             bindService(RawbtApiHelper.createExplicitIntent(), connectService, Context.BIND_AUTO_CREATE);
         } catch (SecurityException s) {
@@ -155,11 +149,9 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         if (serviceRawBT == null) {
-            bindRawBT(true);
+            handler.postDelayed(()->bindRawBT(true),500);
         }
     }    // --------------------------------------------------------
-    private final ActivityResultLauncher<String> mRequestPermission = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> bindRawBT(false));
-    // --------------------------------------------------------
 
     @Override
     protected void onDestroy() {
@@ -167,6 +159,20 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
         if (serviceRawBT != null) {
             unbindService(connectService);
         }
+    }
+
+    protected void getPrinters(){
+        if (adapterSelectPrinter == null) return;
+        try {
+            boolean flag = serviceRawBT.getPrinters(getPrintersCallback);
+            if (!flag) {
+                PrinterInfo p1 = new PrinterInfo();
+                p1.name = "current";
+                p1.description = "Default";
+                adapterSelectPrinter.add(p1);
+                adapterSelectPrinter.notifyDataSetChanged();
+            }
+        } catch (Exception ignored) {}
     }
 
     protected void printJob(@NonNull RawbtPrintJob job) {
@@ -190,7 +196,8 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
             }
         });
 
-    }
+    }    private final ActivityResultLauncher<String> mRequestPermission = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> bindRawBT(false));
+    // --------------------------------------------------------
 
     abstract protected void handleServiceConnected();
 
@@ -202,7 +209,9 @@ abstract public class AppCompatWithRawbtActivity extends AppCompatActivity {
 
     abstract protected void handlePrintProgress(String jobId, Float p);
 
-     abstract protected String getSelectedPrinterName();
+    abstract protected String getSelectedPrinterName();
+
+
 
 
 
