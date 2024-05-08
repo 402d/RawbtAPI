@@ -14,8 +14,32 @@ public class RawbtApiHelper {
     public static final String SERVICE_PERMISSION = "ru.a402d.rawbtprinter.PERMISSION";
     public static final String SERVICE_PACKAGE = "ru.a402d.rawbtprinter";
 
-
+    /**
+     * Old scheme !
+     * RawBt as of version 7.0 does not support running as a foreground service.
+     * Use a binding.
+     * @param context
+     * @param job
+     */
+    @Deprecated
     public static void startActionPrintJob(Context context, RawbtPrintJob job) {
+        try {
+            Gson gson = new Gson();
+            String jobJson = gson.toJson(job);
+
+            Intent intent = new Intent();
+            intent.setAction(ACTION_PRINT_JOB);
+            intent.setPackage(SERVICE_PACKAGE);
+            intent.putExtra(EXTRA_JOB, jobJson);
+
+            context.startActivity(intent);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    // for RawBT less 7.0
+    public static void startActionAsService(Context context, RawbtPrintJob job) {
         try {
             Gson gson = new Gson();
             String jobJson = gson.toJson(job);
