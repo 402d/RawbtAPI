@@ -14,6 +14,7 @@ public class AttributesImage implements Parcelable {
     private int scale = 16;
     private boolean doScale = true;
     private String alignment = ALIGNMENT_LEFT;
+    private boolean squeezeImage = false;
 
 
 
@@ -77,6 +78,14 @@ public class AttributesImage implements Parcelable {
         return this;
     }
 
+    public boolean isSqueezeImage() {
+        return squeezeImage;
+    }
+
+    public void setSqueezeImage(boolean squeezeImage) {
+        this.squeezeImage = squeezeImage;
+    }
+
     // implements parcelable
 
     protected AttributesImage(Parcel in) {
@@ -86,6 +95,7 @@ public class AttributesImage implements Parcelable {
         scale = in.readInt();
         alignment = in.readString();
         doScale  = in.readByte() != 0;
+        squeezeImage  = in.readByte() != 0;
     }
 
     @Override
@@ -96,6 +106,7 @@ public class AttributesImage implements Parcelable {
         dest.writeInt(scale);
         dest.writeString(alignment);
         dest.writeByte((byte) (doScale ? 1 : 0));
+        dest.writeByte((byte) (squeezeImage ? 1 : 0));
     }
 
     @Override
