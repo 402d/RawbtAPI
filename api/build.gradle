@@ -30,9 +30,8 @@ android {
     }
 
     publishing {
-        multipleVariants {
-            allVariants()
-            withJavadocJar()
+        singleVariant('release') {
+            withSourcesJar()
         }
     }
 
@@ -45,6 +44,20 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.9.1'
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:2.0.21"))
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'com.github.402d'
+            artifactId = 'RawbtAPI'
+            version = '1.0'
+
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
 }
 
 
