@@ -4,11 +4,13 @@ plugins {
 }
 
 android {
-    compileSdk 34
+    compileSdk 36
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 34
+        minSdkVersion 21
+        aarMetadata {
+            minCompileSdk = 21
+        }
     }
 
     buildFeatures {
@@ -27,54 +29,22 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    publishing {
+        multipleVariants {
+            allVariants()
+            withJavadocJar()
+        }
+    }
+
     namespace 'rawbt.api'
 }
 
 dependencies {
     implementation 'org.java-websocket:Java-WebSocket:1.5.3'
     implementation 'com.google.code.gson:gson:2.10.1'
-    implementation 'androidx.annotation:annotation:1.7.1'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.22"))
+    implementation 'androidx.annotation:annotation:1.9.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:2.0.21"))
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                from components.release
 
-                groupId = 'com.github.402d'
-                artifactId = 'RawbtAPI'
-                version = '1.0'
-
-                artifact(sourceJar)
-
-                pom {
-                    name = 'RawbtAPI'
-                    description = 'Library for integration with the printing service (RawBT) for thermal printers.'
-                    url = 'https://github.com/402d/RawbtAPI'
-                    licenses {
-                        license {
-                            name = 'MIT License'
-                            url = 'https://opensource.org/licenses/mit-license.html'
-                        }
-                    }
-                    developers {
-                        developer {
-                            id = '402d'
-                            name = 'Oleg Muraveyko'
-                            email = 'oleg@muraveyko.ru'
-                        }
-                    }
-
-                }
-            }
-        }
-    }
-}
-
-tasks.register('sourceJar', Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier "sources"
-}
